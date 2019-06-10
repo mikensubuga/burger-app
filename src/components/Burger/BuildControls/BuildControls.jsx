@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import BuildControl from "./BuildControl/BuildControl";
 import classes from "./BuildControls.module.css";
 

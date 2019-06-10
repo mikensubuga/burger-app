@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 const orderSummary = props => {
   const ingredientSummary = Object.keys(props.ingredients).map(igKey => {
     return (
