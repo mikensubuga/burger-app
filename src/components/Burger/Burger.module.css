@@ -2,10 +2,12 @@
   width: 100%;
   margin: auto;
   height: 250px;
-  overflow: scroll;
+  overflow: auto;
   text-align: center;
   font-weight: bold;
   font-size: 1.2rem;
+  /* display: flex;
+  flex-direction: column; */
 }
 
 @media (min-width: 1000px) and (min-height: 700px) {
