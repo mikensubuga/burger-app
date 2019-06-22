@@ -9,6 +9,15 @@ class Checkout extends Component {
       bacon: 3
     }
   };
+  componentDidMount() {
+    const query = new URLSearchParams(this.props.location.search);
+    const ingredients = {};
+    for (let param of query.entries()) {
+      ingredients[param[0]] = +param[1];
+    }
+    this.setState({ ingredients: ingredients });
+    console.log("query" + query);
+  }
   render() {
     return (
       <div>
@@ -20,6 +29,7 @@ class Checkout extends Component {
       </div>
     );
   }
+
   continue = () => {
     // alert("you continue");
     this.props.history.replace("/checkout/contact-data");
