@@ -21,10 +21,13 @@ class Checkout extends Component {
     );
   }
   continue = () => {
-    alert("you continue");
+    // alert("you continue");
+    this.props.history.replace("/checkout/contact-data");
   };
   cancel = () => {
-    alert("you cancel");
+    console.log(this.props);
+    // alert("you cancel");
+    this.props.history.goBack();
   };
 }
 
