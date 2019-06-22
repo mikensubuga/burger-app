@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal";
@@ -15,7 +16,13 @@ const INGREDIENT_PRICES = {
 };
 class BurgerBuilder extends Component {
   state = {
-    ingredients: null,
+    // ingredients: null,
+    ingredients: {
+      meat: 0,
+      bacon: 0,
+      cheese: 1,
+      salad: 1
+    },
     totalPrice: 4,
     purchasable: false,
     purchasing: false,
@@ -23,14 +30,14 @@ class BurgerBuilder extends Component {
     error: false
   };
   componentDidMount() {
-    axios
-      .get("https://my-burger-ef5e6.firebaseio.com/ingredients.json")
-      .then(response => {
-        this.setState({ ingredients: response.data });
-      })
-      .catch(error => {
-        this.setState({ error: true });
-      });
+    // axios
+    //   .get("https://my-burger-ef5e6.firebaseio.com/ingredients.json")
+    //   .then(response => {
+    //     this.setState({ ingredients: response.data });
+    //   })
+    //   .catch(error => {
+    //     this.setState({ error: true });
+    //   });
   }
   render() {
     const disabledInfo = {
@@ -89,28 +96,30 @@ class BurgerBuilder extends Component {
 
   purchaseContinuehander = () => {
     //alert("You Continue");
-    this.setState({ loading: true });
-    const order = {
-      ingredients: this.state.ingredients,
-      price: this.state.totalPrice,
-      customer: {
-        name: "Jane Doe",
-        address: {
-          country: "Uganda"
-        },
-        email: "nmike@cis.mak.ac.ug"
-      }
-    };
-    axios
-      .post("/orders.json", order)
-      .then(response => {
-        this.setState({ loading: false, purchasing: false });
-        console.log(response);
-      })
-      .catch(error => {
-        this.setState({ loading: false, purchasing: false });
-        console.log(error);
-      });
+    //this.setState({ loading: true });
+    // const order = {
+    //   ingredients: this.state.ingredients,
+    //   price: this.state.totalPrice,
+    //   customer: {
+    //     name: "Jane Doe",
+    //     address: {
+    //       country: "Uganda"
+    //     },
+    //     email: "nmike@cis.mak.ac.ug"
+    //   }
+    // };
+    // axios
+    //   .post("/orders.json", order)
+    //   .then(response => {
+    //     this.setState({ loading: false, purchasing: false });
+    //     console.log(response);
+    //   })
+    //   .catch(error => {
+    //     this.setState({ loading: false, purchasing: false });
+    //     console.log(error);
+    //   });
+    console.log(this.props);
+    this.props.history.push("/checkout");
   };
   updatePurchaseState(ingredients) {
     // const ingredients = {
