@@ -7,11 +7,49 @@ import { withRouter } from "react-router-dom";
 import Input from "../../../components/UI/Input/Input";
 class ContactData extends Component {
   state = {
-    name: "",
-    email: "",
-    address: {
-      street: "",
-      city: ""
+    orderForm: {
+      name: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Your Name"
+        },
+        value: ""
+      },
+      email: {
+        elementType: "input",
+        elementConfig: {
+          type: "email",
+          placeholder: "Street"
+        },
+        value: ""
+      },
+      country: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "Country"
+        },
+        value: ""
+      },
+      city: {
+        elementType: "input",
+        elementConfig: {
+          type: "text",
+          placeholder: "City"
+        },
+        value: ""
+      },
+      deliveryMethod: {
+        elementType: "select",
+        elementConfig: {
+          options: [
+            { value: "fastest", displayValue: "Fastest" },
+            { value: "cheapest", displayValue: "Cheapest" }
+          ]
+        },
+        value: ""
+      }
     },
     loading: false
   };
@@ -22,15 +60,7 @@ class ContactData extends Component {
     this.setState({ loading: true });
     const order = {
       ingredients: this.props.ingredients,
-      price: this.props.price,
-      customer: {
-        name: "Nakiranda Elizabeth",
-        email: "nmike@cis.mak.ac.ug",
-        address: {
-          country: "Uganda",
-          city: "Kampala"
-        }
-      }
+      price: this.props.price
     };
     axios
       .post("/orders.json", order)
@@ -48,29 +78,23 @@ class ContactData extends Component {
     let form = (
       <form>
         <Input
-          inputtype="input"
-          type="text"
-          name="name"
-          placeholder="Your Name"
+          elementType={this.state.orderForm.name.elementType}
+          elementConfig={this.state.orderForm.name.elementConfig}
+          value={this.state.orderForm.name.value}
         />
         <Input
-         inputtype="input"
+          inputtype="input"
           type="email"
           name="email"
           placeholder="Your Email"
         />
         <Input
-         inputtype="input"
+          inputtype="input"
           type="text"
           name="country"
           placeholder="Country"
         />
-        <Input 
-         inputtype="input"
-          type="text"
-          name="city"
-          placeholder="City"
-        />
+        <Input inputtype="input" type="text" name="city" placeholder="City" />
         <Button btnType="Success" clicked={this.orderHandler}>
           Order
         </Button>
