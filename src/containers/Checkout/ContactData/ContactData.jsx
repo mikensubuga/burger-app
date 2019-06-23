@@ -74,6 +74,19 @@ class ContactData extends Component {
         console.log(error);
       });
   };
+
+  inputChangedHandler = (event, inputID) => {
+    const updatedOrderForm = {
+      ...this.state.orderForm
+    };
+    const updatedFormElement = {
+      ...updatedOrderForm[inputID]
+    };
+    updatedFormElement.value = event.target.value;
+    updatedOrderForm[inputID] = updatedFormElement;
+    this.setState({ orderForm: updatedOrderForm });
+    console.log(this.state.orderForm);
+  };
   render() {
     const formElementsArray = [];
     for (let key in this.state.orderForm) {
@@ -90,6 +103,7 @@ class ContactData extends Component {
             elementConfig={formElement.config.elementConfig}
             key={formElement.id}
             value={formElement.config.value}
+            changed={event => this.inputChangedHandler(event, formElement.id)}
           />
         ))}
         {/* <Input
