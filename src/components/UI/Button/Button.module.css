@@ -26,6 +26,10 @@
   margin-left: 10;
   padding-left: 10;
 }
+.Button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+}
 
 .Success {
   background-color: #5c9210;
