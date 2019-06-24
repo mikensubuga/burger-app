@@ -18,7 +18,7 @@ class ContactData extends Component {
         validation: {
           required: true,
           minLength: 2,
-          maxLength: 100
+          maxLength: 6
         },
         valid: false
       },
@@ -100,15 +100,15 @@ class ContactData extends Component {
   };
 
   checkValidity(value, rules) {
-    let isValid = false;
+    let isValid = true;
     if (rules.required) {
-      isValid = value.trim() !== "" && isValid;
+      isValid = value.trim() !== " " && isValid;
     }
     if (rules.minLength) {
       isValid = value.length >= rules.minLength && isValid;
     }
     if (rules.maxLength) {
-      isValid = value.length >= rules.maxLength && isValid;
+      isValid = value.length <= rules.maxLength && isValid;
     }
     return isValid;
   }
@@ -144,6 +144,8 @@ class ContactData extends Component {
       <form onSubmit={this.orderHandler}>
         {formElementsArray.map(formElement => (
           <Input
+            shouldValidate={formElement.config.validation}
+            invalid={!formElement.config.valid}
             elementType={formElement.config.elementType}
             elementConfig={formElement.config.elementConfig}
             key={formElement.id}
