@@ -71,6 +71,7 @@ class ContactData extends Component {
           ]
         },
         value: "",
+        validation: {},
         valid: true
       }
     },
@@ -128,13 +129,13 @@ class ContactData extends Component {
     updatedFormElement.value = event.target.value;
 
     // checking valididity
-    if (inputID !== "deliveryMethod") {
-      //disable validation on dropdown
-      updatedFormElement.valid = this.checkValidity(
-        updatedFormElement.value,
-        updatedFormElement.validation
-      );
-    }
+    // if (inputID !== "deliveryMethod") {
+    //disable validation on dropdown
+    updatedFormElement.valid = this.checkValidity(
+      updatedFormElement.value,
+      updatedFormElement.validation
+    );
+    // }
 
     //touched
     updatedFormElement.touched = true;
