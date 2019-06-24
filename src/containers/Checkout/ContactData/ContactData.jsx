@@ -20,7 +20,8 @@ class ContactData extends Component {
           minLength: 2,
           maxLength: 6
         },
-        valid: false
+        valid: false,
+        touched: false
       },
       email: {
         elementType: "input",
@@ -32,7 +33,8 @@ class ContactData extends Component {
         validation: {
           required: true
         },
-        valid: false
+        valid: false,
+        touched: false
       },
       country: {
         elementType: "input",
@@ -44,7 +46,8 @@ class ContactData extends Component {
         validation: {
           required: true
         },
-        valid: false
+        valid: false,
+        touched: false
       },
       city: {
         elementType: "input",
@@ -56,7 +59,8 @@ class ContactData extends Component {
         validation: {
           required: true
         },
-        valid: false
+        valid: false,
+        touched: false
       },
       deliveryMethod: {
         elementType: "select",
@@ -102,7 +106,7 @@ class ContactData extends Component {
   checkValidity(value, rules) {
     let isValid = true;
     if (rules.required) {
-      isValid = value.trim() !== " " && isValid;
+      isValid = value.trim() !== "" && isValid;
     }
     if (rules.minLength) {
       isValid = value.length >= rules.minLength && isValid;
@@ -122,14 +126,19 @@ class ContactData extends Component {
     updatedFormElement.value = event.target.value;
 
     // checking valididity
-    updatedFormElement.valid = this.checkValidity(
-      updatedFormElement.value,
-      updatedFormElement.validation
-    );
+    if (inputID !== "deliveryMethod") {
+      //disable validation on dropdown
+      updatedFormElement.valid = this.checkValidity(
+        updatedFormElement.value,
+        updatedFormElement.validation
+      );
+    }
 
+    //touched
+    updatedFormElement.touched = true;
+    console.log(updatedFormElement);
     //setting updated form
     updatedOrderForm[inputID] = updatedFormElement;
-    console.log(updatedFormElement);
     this.setState({ orderForm: updatedOrderForm });
   };
   render() {
@@ -144,6 +153,7 @@ class ContactData extends Component {
       <form onSubmit={this.orderHandler}>
         {formElementsArray.map(formElement => (
           <Input
+            touched={formElement.config.touched}
             shouldValidate={formElement.config.validation}
             invalid={!formElement.config.valid}
             elementType={formElement.config.elementType}
