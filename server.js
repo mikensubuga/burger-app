@@ -4,7 +4,7 @@ const path = require("path");
 // create the express app
 const app = express();
 // create middleware to handle the serving the app
-app.use("/", serveStatic(path.join(__dirname, "/public")));
+app.use("/", serveStatic(path.join(__dirname, "/build")));
 // Create default port to serve the app on
 const port = process.env.PORT || 80;
 app.listen(port);
