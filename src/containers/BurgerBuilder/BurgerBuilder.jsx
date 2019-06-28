@@ -25,7 +25,7 @@ class BurgerBuilder extends Component {
     //   salad: 1
     // },
     // totalPrice: 4,
-    purchasable: false,
+    // purchasable: false,
     purchasing: false,
     loading: false,
     error: false
@@ -59,7 +59,7 @@ class BurgerBuilder extends Component {
             ingredientRemoved={this.props.onIngredientRemoved}
             disabled={disabledInfo}
             price={this.props.px}
-            purchasable={this.state.purchasable}
+            purchasable={this.updatePurchaseState(this.props.ings)}
             ordered={this.purchaseHandler}
           />
         </div>
@@ -114,7 +114,7 @@ class BurgerBuilder extends Component {
       search: "?" + queryString
     });
   };
-  updatePurchaseState(ingredients) {
+  updatePurchaseState = ingredients => {
     // const ingredients = {
     //   ...this.state.ingredients
     // };
@@ -125,8 +125,9 @@ class BurgerBuilder extends Component {
       .reduce((sum, el) => {
         return sum + el;
       }, 0);
+    return sum > 0;
     this.setState({ purchasable: sum > 0 });
-  }
+  };
   /*
   addIngredientHandler = type => {
     const oldCount = this.props.ings[type];
