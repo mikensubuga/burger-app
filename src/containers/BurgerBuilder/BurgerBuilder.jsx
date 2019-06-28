@@ -16,13 +16,13 @@ const INGREDIENT_PRICES = {
 };
 class BurgerBuilder extends Component {
   state = {
-    // ingredients: null,
-    ingredients: {
-      meat: 0,
-      bacon: 0,
-      cheese: 1,
-      salad: 1
-    },
+    ingredients: null,
+    // ingredients: {
+    //   meat: 0,
+    //   bacon: 0,
+    //   cheese: 1,
+    //   salad: 1
+    // },
     totalPrice: 4,
     purchasable: false,
     purchasing: false,
@@ -30,14 +30,14 @@ class BurgerBuilder extends Component {
     error: false
   };
   componentDidMount() {
-    // axios
-    //   .get("https://my-burger-ef5e6.firebaseio.com/ingredients.json")
-    //   .then(response => {
-    //     this.setState({ ingredients: response.data });
-    //   })
-    //   .catch(error => {
-    //     this.setState({ error: true });
-    //   });
+    axios
+      .get("https://my-burger-ef5e6.firebaseio.com/ingredients.json")
+      .then(response => {
+        this.setState({ ingredients: response.data });
+      })
+      .catch(error => {
+        this.setState({ error: true });
+      });
   }
   render() {
     const disabledInfo = {
