@@ -8,7 +8,8 @@ import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
 import axios from "../../axios-order";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
-import * as actionTypes from "../../store/actions/actions";
+import * as actionTypes from "../../store/actions/actionTypes";
+import * as burgerBuilderActions from "../../store/actions/index";
 const INGREDIENT_PRICES = {
   salad: 0.5,
   cheese: 0.4,
@@ -183,9 +184,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     onIngredientAdded: igName =>
-      dispatch({ type: actionTypes.ADD_INGREDIENT, ingredientName: igName }),
+      dispatch(burgerBuilderActions.addIngredient(igName)),
     onIngredientRemoved: igName =>
-      dispatch({ type: actionTypes.REMOVE_INGREDIENT, ingredientName: igName })
+      dispatch(burgerBuilderActions.removeIngredient(igName))
   };
 };
 
