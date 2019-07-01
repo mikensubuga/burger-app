@@ -25,6 +25,12 @@ const reducer = (state = initialState, action) => {
         loading: false
       };
       break;
+    case actionTypes.PURCHASE_BURGER_START:
+      return {
+        ...state,
+        loading: true
+      };
+      break;
     default:
       return state;
       break;

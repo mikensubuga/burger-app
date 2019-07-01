@@ -78,7 +78,7 @@ class ContactData extends Component {
         valid: true
       }
     },
-    loading: false,
+    // loading: false,
     formIsValid: false
   };
 
@@ -186,7 +186,7 @@ class ContactData extends Component {
         </Button>
       </form>
     );
-    if (this.state.loading) {
+    if (this.props.loading) {
       form = <Spinner />;
     }
     return (
@@ -200,13 +200,14 @@ class ContactData extends Component {
 const mapStateToProps = state => {
   return {
     ings: state.ingredients,
-    px: state.totalprice
+    px: state.totalprice,
+    loading: state.loading
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
-    onOrderBurger: orderData => dispatch(actions.purchaseBurgerStart(orderData))
+    onOrderBurger: orderData => dispatch(actions.purchaseBurger(orderData))
   };
 };
 
