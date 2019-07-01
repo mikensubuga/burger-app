@@ -6,6 +6,8 @@ import Spinner from "../../../components/UI/Spinner/Spinner";
 import { withRouter } from "react-router-dom";
 import Input from "../../../components/UI/Input/Input";
 import { connect } from "react-redux";
+import withErrorHandler from "../../../hoc/withErrorHandler";
+import * as actions from "../../../store/actions/index";
 class ContactData extends Component {
   state = {
     orderForm: {
@@ -82,7 +84,7 @@ class ContactData extends Component {
 
   orderHandler = event => {
     event.preventDefault();
-    this.setState({ loading: true });
+    // this.setState({ loading: true });
     const formData = {};
     for (let formElementIdentifier in this.state.orderForm) {
       formData[formElementIdentifier] = this.state.orderForm[
@@ -105,6 +107,7 @@ class ContactData extends Component {
     //     this.setState({ loading: false });
     //     console.log(error);
     //   });
+    this.props.onOrderBurger(order);
   };
 
   checkValidity(value, rules) {
@@ -200,4 +203,11 @@ const mapStateToProps = state => {
     px: state.totalprice
   };
 };
-export default connect(mapStateToProps)(withRouter(ContactData));
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onOrderBurger: orderData => dispatch(actions.purchaseBurgerStart(orderData))
+  };
+};
+
+export default connect(mapStateToProps)(withErrorHandler(ContactData, axios));
