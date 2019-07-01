@@ -40,6 +40,7 @@ class BurgerBuilder extends Component {
     //   .catch(error => {
     //     this.setState({ error: true });
     //   });
+    this.props.onInitIngredients();
   }
   render() {
     const disabledInfo = {
@@ -50,7 +51,7 @@ class BurgerBuilder extends Component {
     }
     let orderSummary = null;
 
-    let burger = this.state.error ? <p>Ingredients not loaded</p> : <Spinner />;
+    let burger = this.props.error ? <p>Ingredients not loaded</p> : <Spinner />;
     if (this.props.ings) {
       burger = (
         <div>
@@ -177,7 +178,8 @@ class BurgerBuilder extends Component {
 const mapStateToProps = state => {
   return {
     ings: state.ingredients,
-    px: state.totalPrice
+    px: state.totalPrice,
+    error: state.error
   };
 };
 
@@ -186,7 +188,8 @@ const mapDispatchToProps = dispatch => {
     onIngredientAdded: igName =>
       dispatch(burgerBuilderActions.addIngredient(igName)),
     onIngredientRemoved: igName =>
-      dispatch(burgerBuilderActions.removeIngredient(igName))
+      dispatch(burgerBuilderActions.removeIngredient(igName)),
+    onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients())
   };
 };
 
