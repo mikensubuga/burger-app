@@ -9,7 +9,7 @@ import axios from "../../axios-order";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import * as actionTypes from "../../store/actions/actionTypes";
-import * as burgerBuilderActions from "../../store/actions/index";
+import * as actions from "../../store/actions/index";
 const INGREDIENT_PRICES = {
   salad: 0.5,
   cheese: 0.4,
@@ -111,6 +111,7 @@ class BurgerBuilder extends Component {
     queryParams.push("price=" + this.state.totalPrice);
     const queryString = queryParams.join("&");
 */
+    this.props.onInitPurchase();
     this.props.history.push({
       pathname: "/checkout"
       // search: "?" + queryString
@@ -185,11 +186,10 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    onIngredientAdded: igName =>
-      dispatch(burgerBuilderActions.addIngredient(igName)),
-    onIngredientRemoved: igName =>
-      dispatch(burgerBuilderActions.removeIngredient(igName)),
-    onInitIngredients: () => dispatch(burgerBuilderActions.initIngredients())
+    onIngredientAdded: igName => dispatch(actions.addIngredient(igName)),
+    onIngredientRemoved: igName => dispatch(actions.removeIngredient(igName)),
+    onInitIngredients: () => dispatch(actions.initIngredients()),
+    onInitPurchase: () => dispatch(actions.purchaseInit())
   };
 };
 
