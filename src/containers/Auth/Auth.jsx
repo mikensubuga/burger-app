@@ -3,6 +3,7 @@ import Input from "../../components/UI/Input/Input";
 import Button from "../../components/UI/Button/Button";
 import classes from "./Auth.module.css";
 import * as actions from "../../store/actions/index";
+import Spinner from "../../components/UI/Spinner/Spinner";
 import { connect } from "react-redux";
 class Auth extends Component {
   state = {
@@ -126,8 +127,17 @@ class Auth extends Component {
         </Button>
       </form>
     );
+
+    if (this.props.loading) {
+      form = <Spinner />;
+    }
+    let errorMessage = null;
+    if (this.props.error) {
+      errorMessage = <p>{this.props.error.message}</p>;
+    }
     return (
       <div className={classes.Auth}>
+        {errorMessage}
         <h4>
           Enter your Personal Data to{" "}
           {this.state.isSignUp ? "Sign Up" : "Sign In"}
@@ -141,7 +151,12 @@ class Auth extends Component {
     );
   }
 }
-
+const mapStateToProps = state => {
+  return {
+    loading: state.auth.loading,
+    error: state.auth.error
+  };
+};
 const mapDispatchToProps = dispatch => {
   return {
     onAuth: (email, password, isSignUp) =>
@@ -149,6 +164,6 @@ const mapDispatchToProps = dispatch => {
   };
 };
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(Auth);
