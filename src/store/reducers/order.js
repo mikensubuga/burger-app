@@ -1,5 +1,4 @@
 import * as actionTypes from "../actions/actionTypes";
-import { expressionStatement } from "@babel/types";
 
 const initialState = {
   orders: [],
@@ -25,19 +24,16 @@ const reducer = (state = initialState, action) => {
         orders: state.orders.concat(newOrder),
         purchased: true
       };
-      break;
     case actionTypes.PURCHASE_BURGER_FAIL:
       return {
         ...state,
         loading: false
       };
-      break;
     case actionTypes.PURCHASE_BURGER_START:
       return {
         ...state,
         loading: true
       };
-      break;
 
     case actionTypes.FETCH_ORDERS_START:
       return {
@@ -57,7 +53,6 @@ const reducer = (state = initialState, action) => {
       };
     default:
       return state;
-      break;
   }
 };
 
