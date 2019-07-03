@@ -122,7 +122,7 @@ class Auth extends Component {
     );
     return (
       <div className={classes.Auth}>
-        <h4>Enter your Personal Data</h4>
+        <h4>Enter your Personal Data to Sign Up</h4>
 
         {form}
       </div>
