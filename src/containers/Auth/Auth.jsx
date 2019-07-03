@@ -5,8 +5,10 @@ import classes from "./Auth.module.css";
 import * as actions from "../../store/actions/index";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import { connect } from "react-redux";
+import Modal from "../../components/UI/Modal/Modal";
 class Auth extends Component {
   state = {
+    error: null,
     controls: {
       email: {
         elementType: "input",

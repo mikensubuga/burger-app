@@ -27,6 +27,12 @@ const reducer = (state = initialState, action) => {
         error: action.error,
         loading: false
       };
+    case actionTypes.AUTH_LOGOUT:
+      return {
+        ...state,
+        userId: null,
+        token: null
+      };
     default:
       return state;
   }
