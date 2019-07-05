@@ -108,6 +108,9 @@ class Auth extends Component {
       return { isSignUp: !prevState.isSignUp };
     });
   };
+  errorCancelHandler = () => {
+    this.props.onSetErrorToNull();
+  };
   render() {
     const formElementsArray = [];
     for (let key in this.state.controls) {
@@ -142,7 +145,14 @@ class Auth extends Component {
     }
     let errorMessage = null;
     if (this.props.error) {
-      errorMessage = <p>{this.props.error.message}</p>;
+      errorMessage = (
+        <Modal
+          modalClosed={this.errorCancelHandler}
+          show={this.props.error !== null}
+        >
+          <p>{this.props.error.message}</p>
+        </Modal>
+      );
     }
 
     let authRedirect = null;
@@ -179,7 +189,8 @@ const mapDispatchToProps = dispatch => {
   return {
     onAuth: (email, password, isSignUp) =>
       dispatch(actions.auth(email, password, isSignUp)),
-    onSetAuthRedirectPath: path => dispatch(actions.setAuthRedirectPath(path))
+    onSetAuthRedirectPath: path => dispatch(actions.setAuthRedirectPath(path)),
+    onSetErrorToNull: () => dispatch(actions.setErrorToNull())
   };
 };
 export default connect(

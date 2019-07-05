@@ -39,6 +39,11 @@ const reducer = (state = initialState, action) => {
         ...state,
         authRedirectPath: action.path
       };
+    case actionTypes.SET_ERROR_TO_NULL:
+      return {
+        ...state,
+        error: null
+      };
     default:
       return state;
   }

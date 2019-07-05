@@ -69,3 +69,9 @@ export const setAuthRedirectPath = path => {
     path: path
   };
 };
+
+export const setErrorToNull = () => {
+  return {
+    type: actionTypes.SET_ERROR_TO_NULL
+  };
+};
