@@ -4,16 +4,18 @@ import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 class Logout extends Component {
   componentDidMount() {
+    console.log("logout did mount");
     this.props.onLogout();
   }
   render() {
+    console.log("render logout");
     return <Redirect to="/" />;
   }
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onLogout: () => dispatch(actions.logout)
+    onLogout: () => dispatch(actions.logout())
   };
 };
 export default connect(
