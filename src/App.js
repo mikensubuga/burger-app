@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Route } from "react-router-dom";
+import { Route, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import Layout from "./components/Layout/Layout";
 import BurgerBuilder from "./containers/BurgerBuilder/BurgerBuilder";
@@ -32,7 +32,11 @@ const mapDispatchToProps = dispatch => {
     onTryAutoSignup: () => dispatch(actions.authCheckState())
   };
 };
-export default connect(
-  null,
-  mapDispatchToProps
-)(App);
+
+//wrapping with router hoc is opt here
+export default withRouter(
+  connect(
+    null,
+    mapDispatchToProps
+  )(App)
+);
