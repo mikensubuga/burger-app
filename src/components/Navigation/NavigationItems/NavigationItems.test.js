@@ -3,13 +3,22 @@ import { configure, shallow } from "enzyme";
 import Adapter from "enzyme-adapter-react-16";
 import NavigationItems from "./NavigationItems";
 import NavigationItem from "./NavigationItem/NavigationItem";
-import { exportAllDeclaration } from "@babel/types";
 
 configure({ adapter: new Adapter() });
 
 describe("<NavigationItems/>", () => {
+  beforeEach(() => {
+    wrapper = shallow(<NavigationItems />);
+  });
+
   it("should render 2 <NavigationItem/> elements if not auth", () => {
-    const wrapper = shallow(<NavigationItems />);
+    // const wrapper = shallow(<NavigationItems />);
     expect(wrapper.find(NavigationItem)).toHaveLength(2);
+  });
+
+  it("should render 3 <NavigationItem/> elements if auth", () => {
+    wrapper.setProps({ isAuthenticated: true });
+    // const wrapper = shallow(<NavigationItems isAuthenticated />);
+    expect(wrapper.find(NavigationItem)).toHaveLength(3);
   });
 });
