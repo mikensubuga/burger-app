@@ -14,7 +14,7 @@ import * as actions from "../../store/actions/index";
 //   meat: 1.3,
 //   bacon: 0.7
 // };
-class BurgerBuilder extends Component {
+export class BurgerBuilder extends Component {
   state = {
     // ingredients: null,
     // ingredients: {
