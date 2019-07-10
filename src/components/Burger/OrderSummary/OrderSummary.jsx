@@ -3,9 +3,7 @@ import Button from "../../UI/Button/Button";
 
 class OrderSummary extends Component {
   //cud be sfc not cc
-  componentWillUpdate() {
-    console.log("OrderSummary Component will update");
-  }
+
   render() {
     const ingredientSummary = Object.keys(this.props.ingredients).map(igKey => {
       return (

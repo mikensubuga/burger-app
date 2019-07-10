@@ -142,7 +142,7 @@ class ContactData extends Component {
 
     //touched
     updatedFormElement.touched = true;
-    console.log(updatedFormElement);
+    // console.log(updatedFormElement);
     //setting updated form
     updatedOrderForm[inputID] = updatedFormElement;
 

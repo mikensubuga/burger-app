@@ -8,7 +8,7 @@ const INGREDIENT_PRICES = {
 };
 
 const initialState = {
-  ingredients: null,
+  // ingredients: null,
   ingredients: {
     meat: 0,
     bacon: 0,

@@ -77,7 +77,6 @@ export const fetchOrders = token => {
         dispatch(fetchOrdersSuccess(fetchedOrders));
       })
       .catch(err => {
-        console.log(err);
         dispatch(fetchOrdersFail(err));
       });
   };
