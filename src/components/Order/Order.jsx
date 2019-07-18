@@ -1,5 +1,6 @@
 import React from "react";
 import classes from "./Order.module.css";
+import Skeleton from "react-loading-skeleton";
 const order = props => {
   const ingredients = [];
 

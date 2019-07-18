@@ -5,6 +5,7 @@ import axios from "../../axios-order";
 import withErrorHandler from "../../hoc/withErrorHandler/withErrorHandler";
 import Spinner from "../../components/UI/Spinner/Spinner";
 import * as actions from "../../store/actions/index";
+import Skel from "../../components/UI/Skeleton/Skeleton";
 class Orders extends Component {
   state = {
     // orders: [],
@@ -43,7 +44,7 @@ class Orders extends Component {
       </div>
     );
     if (this.props.loading) {
-      orders = <Spinner />;
+      orders = <Skel />;
     }
     return <div>{orders}</div>;
   }

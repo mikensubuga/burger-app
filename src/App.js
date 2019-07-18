@@ -9,6 +9,7 @@ import BurgerBuilder from "./containers/BurgerBuilder/BurgerBuilder";
 // import Auth from "./containers/Auth/Auth";
 import Logout from "./containers/Auth/Logout/Logout";
 import * as actions from "./store/actions/index";
+import Skel from "./components/UI/Skeleton/Skeleton";
 
 const asyncCheckout = asyncComponent(() => {
   return import("./containers/Checkout/Checkout");
@@ -32,6 +33,8 @@ class App extends Component {
       <Switch>
         <Route path="/auth" component={asyncAuth} />
         <Route path="/" exact component={BurgerBuilder} />
+        <Route path="/skeleton" exact component={Skel} />
+
         <Redirect to="/" />
       </Switch>
     );
@@ -43,6 +46,8 @@ class App extends Component {
           <Route path="/orders" component={asyncOrders} />
           <Route path="/auth" component={asyncAuth} />
           <Route path="/logout" component={Logout} />
+          <Route path="/skeleton" exact component={Skel} />
+
           <Redirect to="/" />
         </Switch>
       );
