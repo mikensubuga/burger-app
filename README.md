@@ -1,7 +1,7 @@
 burger-app 
 ==========
 
-A burger app built in ReactJs.
+A simple burger order React app built from Maximilian Schwarzmüller's https://www.udemy.com/react-the-complete-guide-incl-redux/
 
 Usage docs: https://bgr-app.herokuapp.com/
 
